@@ -1,4 +1,4 @@
 /* eslint-disable */
-export const items = (state) => {
+export const questions = (state) => {
   return state.items;
 };

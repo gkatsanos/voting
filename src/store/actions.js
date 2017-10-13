@@ -9,11 +9,9 @@ export const requestItems = ({ commit, dispatch }) => {
 export const fetchItems = ({ commit, dispatch }) => {
   commit(types.FETCHING_ITEMS);
   api.fetchItems().then((data) => {
-    dispatch('receiveItems', data.docs);
-    dispatch('increasePage');
+    dispatch('receiveItems', data);
   }).catch((err) => {
-    dispatch('changeStatus', err);
-    dispatch('toggleDialog', { dialog: 'loginDialog' });
+    console.log(err);
   });
 };
 

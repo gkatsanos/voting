@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import { questions } from '@/mock';
+  import { mapGetters } from 'vuex';
   import Question from '../Question/Question';
 
   export default {
@@ -19,10 +19,13 @@
     components: {
       Question,
     },
-    data() {
-      return {
-        questions,
-      };
+    computed: {
+      ...mapGetters([
+        'questions',
+      ]),
+    },
+    created() {
+      this.$store.dispatch('requestItems');
     },
   };
 </script>
