@@ -3,13 +3,20 @@
 <template>
   <v-app>
     <main>
-      <v-container>BCGDV Voting App</v-container>
+      <v-container fluid grid-list-md>
+        <questions-list></questions-list>
+      </v-container>
     </main>
   </v-app>
 </template>
 
 <script>
+  import questionsList from '../QuestionsList/QuestionsList';
+
   export default {
     name: 'wrapper',
+    components: {
+      questionsList,
+    },
   };
 </script>
