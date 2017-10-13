@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <wrapper></wrapper>
   </div>
 </template>
 
 <script>
+  import wrapper from './components/Wrapper/Wrapper';
+
   export default {
     name: 'app',
+    components: {
+      wrapper,
+    },
   };
 </script>

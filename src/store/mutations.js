@@ -8,7 +8,10 @@ export default {
     state.statusMessage = '';
   },
   [types.FETCHED_ADS_SUCCESS](state, payload) {
-    state.items = [...state.items, ...payload];
+    state.questions = [...payload];
+  },
+  [types.DETAIL_VIEW](state, payload) {
+    state.questions = [payload];
   },
   [types.INCREASE_PAGE](state) {
     state.page += 1;

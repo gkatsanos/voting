@@ -1,13 +1,12 @@
 <template>
-  <v-container fluid grid-list-md>
-    <v-layout row wrap>
-      <question
-        v-for="question in questions"
-        :key="question.url"
-        :question="question">
-      </question>
-    </v-layout>
-  </v-container>
+  <v-layout row wrap>
+    <question
+      v-for="(question, index) in questions"
+      :key="question.url"
+      :id="index"
+      :question="question">
+    </question>
+  </v-layout>
 </template>
 
 <script>

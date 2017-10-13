@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Wrapper from '../components/Wrapper/Wrapper';
+import QuestionsList from '../components/QuestionsList/QuestionsList';
+import QuestionDetail from '../components/QuestionDetail/QuestionDetail';
 
 Vue.use(Router);
 
@@ -9,8 +10,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: Wrapper,
+      component: QuestionsList,
       name: 'home',
+    },
+    {
+      path: '/:id',
+      component: QuestionDetail,
+      name: 'question',
     },
   ],
 });

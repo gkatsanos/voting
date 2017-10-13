@@ -4,7 +4,7 @@
   <v-app>
     <main>
       <v-container fluid grid-list-md>
-        <questions-list></questions-list>
+        <router-view></router-view>
       </v-container>
     </main>
   </v-app>

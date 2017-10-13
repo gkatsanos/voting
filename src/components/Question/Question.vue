@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title primary-title>
         <div>
-          <div class="headline">{{ question.question }}</div>
+          <div class="headline">{{ id }} {{ question.question }}</div>
           <div class="grey--text">
             {{ question.published_at }}
           </div>
@@ -12,6 +12,9 @@
           </div>
         </div>
       </v-card-title>
+      <v-card-actions>
+        <router-link :to="{ name: 'question', params: { id: id }}">Detail</router-link>
+      </v-card-actions>
     </v-card>
   </v-flex>
 </template>
@@ -20,8 +23,9 @@
 
   export default {
     name: 'question',
-    props: {
-      question: Object,
-    },
+    props: [
+      'question',
+      'id',
+    ],
   };
 </script>

@@ -19,6 +19,10 @@ export const receiveItems = ({ commit }, data) => {
   commit(types.FETCHED_ADS_SUCCESS, data);
 };
 
+export const detailView = ({ commit }, data) => {
+  commit(types.DETAIL_VIEW, data);
+};
+
 export const increasePage = ({ commit }, data) => {
   commit(types.INCREASE_PAGE, data);
 };
