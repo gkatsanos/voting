@@ -23,7 +23,7 @@
         'questions',
       ]),
     },
-    created() {
+    mounted() {
       this.$store.dispatch('requestItems');
     },
   };

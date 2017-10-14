@@ -1,11 +1,29 @@
 import axios from 'axios';
 
-const fetchItems = () => (
-  axios('https://polls.apiblueprint.org/questions')
+axios.defaults.baseURL = 'https://polls.apiblueprint.org/';
+
+const getUrl = () => (
+  axios('/')
+    .then(response => response.data.questions_url)
+    .catch((err) => {
+      throw err;
+    })
+);
+
+const fetchItems = url => (
+  axios(url)
     .then(response => response.data)
     .catch((err) => {
       throw err;
     })
 );
 
-export default { fetchItems };
+const vote = (url, data) => (
+  axios.post(url, data)
+    .then(response => response.data)
+    .catch((err) => {
+      throw err;
+    })
+);
+
+export default { fetchItems, vote, getUrl };

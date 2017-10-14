@@ -1,11 +1,14 @@
 import * as types from './mutation-types';
 
 export default {
+  [types.SET_URL](state, payload) {
+    state.apiEntryPoint = payload;
+  },
   [types.REQUESTED_ITEMS](state) {
-    state.statusMessage = '';
+    state.statusMessage = 'loading';
   },
   [types.FETCHING_ITEMS](state) {
-    state.statusMessage = '';
+    state.statusMessage = 'loading';
   },
   [types.FETCHED_ADS_SUCCESS](state, payload) {
     state.questions = [...payload];

@@ -2,13 +2,20 @@ import api from '../api';
 import * as types from './mutation-types';
 
 export const requestItems = ({ commit, dispatch }) => {
+  dispatch('getUrl');
   commit(types.REQUESTED_ITEMS);
-  dispatch('fetchItems');
 };
 
-export const fetchItems = ({ commit, dispatch }) => {
+export const getUrl = ({ commit, dispatch }) => {
+  api.getUrl().then((data) => {
+    commit(types.SET_URL, data);
+    dispatch('fetchItems');
+  });
+};
+
+export const fetchItems = ({ commit, dispatch, state }) => {
   commit(types.FETCHING_ITEMS);
-  api.fetchItems().then((data) => {
+  api.fetchItems(state.apiEntryPoint).then((data) => {
     dispatch('receiveItems', data);
   }).catch((err) => {
     console.log(err);

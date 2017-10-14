@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     questions: [
     ],
+    apiEntryPoint: '',
   },
   actions,
   mutations,
