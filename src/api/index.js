@@ -18,8 +18,8 @@ const fetchItems = url => (
     })
 );
 
-const vote = (url, data) => (
-  axios.post(url, data)
+const vote = url => (
+  axios.post(url)
     .then(response => response.data)
     .catch((err) => {
       throw err;

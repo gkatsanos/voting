@@ -4,9 +4,7 @@
   <v-app>
     <main>
       <v-content>
-        <v-container grid-list-xl>
-          <router-view></router-view>
-        </v-container>
+        <router-view></router-view>
       </v-content>
     </main>
   </v-app>

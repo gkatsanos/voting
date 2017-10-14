@@ -10,6 +10,9 @@ export default {
   [types.FETCHING_ITEMS](state) {
     state.statusMessage = 'loading';
   },
+  [types.VOTE](state) {
+    state.statusMessage = 'loading';
+  },
   [types.FETCHED_ADS_SUCCESS](state, payload) {
     state.questions = [...payload];
   },

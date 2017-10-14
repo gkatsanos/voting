@@ -1,12 +1,15 @@
 <template>
-  <v-layout row wrap>
-    <question
-      v-for="(question, index) in questions"
-      :key="question.url"
-      :id="question.url"
-      :question="question">
-    </question>
-  </v-layout>
+  <v-container grid-list-xl>
+    <h4>Questions</h4>
+    <v-layout row wrap>
+      <question
+        v-for="(question, index) in questions"
+        :key="question.url"
+        :id="question.url"
+        :question="question">
+      </question>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

@@ -22,6 +22,14 @@ export const fetchItems = ({ commit, dispatch, state }) => {
   });
 };
 
+export const vote = ({ commit }, data) => {
+  api.vote(data).then((response) => {
+    commit(types.VOTE, response);
+  }).catch((err) => {
+    console.log(err);
+  });
+};
+
 export const receiveItems = ({ commit }, data) => {
   commit(types.FETCHED_ADS_SUCCESS, data);
 };
