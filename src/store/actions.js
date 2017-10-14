@@ -3,7 +3,7 @@ import * as types from './mutation-types';
 
 export const requestItems = ({ commit, dispatch }) => {
   dispatch('getUrl');
-  commit(types.REQUESTED_ITEMS);
+  commit(types.PRE_HTTP_REQUEST);
 };
 
 export const getUrl = ({ commit, dispatch }) => {
@@ -13,29 +13,25 @@ export const getUrl = ({ commit, dispatch }) => {
   });
 };
 
-export const fetchItems = ({ commit, dispatch, state }) => {
-  commit(types.FETCHING_ITEMS);
+export const fetchItems = ({ dispatch, state }) => {
   api.fetchItems(state.apiEntryPoint).then((data) => {
     dispatch('receiveItems', data);
   }).catch((err) => {
-    console.log(err);
+    throw new Error(err);
   });
 };
 
 export const vote = ({ commit }, data) => {
-  api.vote(data).then((response) => {
-    commit(types.VOTE, response);
+  commit(types.PRE_VOTE);
+  api.vote(data.choice).then((response) => {
+    commit(types.VOTE, { response, data });
   }).catch((err) => {
-    console.log(err);
+    throw new Error(err);
   });
 };
 
 export const receiveItems = ({ commit }, data) => {
   commit(types.FETCHED_ADS_SUCCESS, data);
-};
-
-export const detailView = ({ commit }, data) => {
-  commit(types.DETAIL_VIEW, data);
 };
 
 export const increasePage = ({ commit }, data) => {

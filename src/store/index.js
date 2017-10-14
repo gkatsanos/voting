@@ -10,6 +10,10 @@ export default new Vuex.Store({
   state: {
     questions: [
     ],
+    stateLoaded: false,
+    loadingState: false,
+    btnLoadingState: false,
+    voted: false,
     apiEntryPoint: '',
   },
   actions,

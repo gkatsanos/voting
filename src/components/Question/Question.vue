@@ -1,10 +1,10 @@
 <template>
   <v-flex d-flex sm12 md6 lg4 xl3>
-    <v-card>
+    <v-card color="blue-grey lighten-4">
       <v-card-title primary-title>
         <div>
           <div class="headline">{{ question.question }}</div>
-          <div class="grey--text">
+          <div>
             {{ question.published_at }}
           </div>
           <div>
@@ -13,7 +13,10 @@
         </div>
       </v-card-title>
       <v-card-actions>
-        <router-link :to="`${id}`">Detail</router-link>
+
+          <router-link :to="`${id}`" tag="v-btn">
+            See More
+          </router-link>
       </v-card-actions>
     </v-card>
   </v-flex>

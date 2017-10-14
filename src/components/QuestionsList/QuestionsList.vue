@@ -27,7 +27,9 @@
       ]),
     },
     mounted() {
-      this.$store.dispatch('requestItems');
+      if (!this.$store.state.hasLoaded) {
+        this.$store.dispatch('requestItems');
+      }
     },
   };
 </script>

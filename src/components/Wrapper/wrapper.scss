@@ -1,1 +1,28 @@
 @import "../../../node_modules/vuetify/dist/vuetify.min.css";
+
+// https://vuejs.org/v2/api/#v-cloak
+[v-cloak] {
+  display: none;
+}
+
+.loading-spinner {
+  background: rgba(255,255,255,0.9);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+}
+
+.progress-circular--indeterminate {
+  margin: auto;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s ease;
+}
+.fade-enter, .fade-leave-to
+  /* .component-fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
