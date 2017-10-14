@@ -9,6 +9,16 @@
         <div>
           {{ question.choices && question.choices.length }}
         </div>
+        <v-list>
+          <v-list-tile avatar v-for="(choice, index) in question.choices" v-bind:key="index" @click="">
+            <v-list-tile-content>
+              <v-list-tile-title v-text="choice.choice"></v-list-tile-title>
+            </v-list-tile-content>
+            <v-list-tile-content>
+              <v-list-tile-title v-text="choice.votes"></v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
       </div>
     </v-card-title>
   </v-card>
@@ -28,7 +38,8 @@
     },
     computed: {
       question() {
-        return this.$store.state.questions[this.$route.params.id] || {};
+        return this.$store.state.questions
+          .filter(element => element.url === this.$route.fullPath)[0] || {};
       },
     },
   };

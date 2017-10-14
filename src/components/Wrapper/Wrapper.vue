@@ -3,9 +3,11 @@
 <template>
   <v-app>
     <main>
-      <v-container fluid grid-list-md>
-        <router-view></router-view>
-      </v-container>
+      <v-content>
+        <v-container grid-list-xl>
+          <router-view></router-view>
+        </v-container>
+      </v-content>
     </main>
   </v-app>
 </template>
