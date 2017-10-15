@@ -2,8 +2,13 @@
   <v-layout column>
     <v-flex xs12 md10 offset-md1 lg9>
       <v-card color="blue-grey darken-2" class="white--text">
-        <v-toolbar dark>
-          <v-toolbar-title>Question: {{ question.question }}</v-toolbar-title>
+        <v-toolbar dark prominent height="100%">
+          <v-toolbar-title>
+            <span class='hidden-sm-and-down'>
+              Question:
+            </span>
+            {{ question.question }}
+          </v-toolbar-title>
         </v-toolbar>
         <v-toolbar dense dark>
           <div class="grey--text">
@@ -47,7 +52,7 @@
             color="primary"
             v-if="this.question.voted">
           <v-icon left>arrow_back</v-icon>
-          Back to Questions List
+          Back to Questions
         </v-btn>
       </router-link>
       <v-btn

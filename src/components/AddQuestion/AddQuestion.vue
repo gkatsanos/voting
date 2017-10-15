@@ -2,9 +2,15 @@
   <v-layout column>
     <v-flex xs12 md10 offset-md1 lg9>
       <v-card color="blue-grey darken-2" dark>
-        <v-toolbar dark>
-          <v-toolbar-title v-if="!questionSaved">Add new Question</v-toolbar-title>
-          <v-toolbar-title v-else>Your Question was submitted succesfully</v-toolbar-title>
+        <v-toolbar dark height="100%">
+          <v-toolbar-title>
+            <span v-if="!questionSaved">
+              Add new Question
+            </span>
+            <span v-else>
+              Your Question was submitted succesfully
+            </span>
+          </v-toolbar-title>
         </v-toolbar>
         <v-card-text v-if="!questionSaved">
             <v-form v-model="valid" ref="form">
@@ -95,7 +101,7 @@
             color="primary"
             v-if="questionSaved">
             <v-icon left>arrow_back</v-icon>
-            Back to Questions List
+            Back to Questions
         </v-btn>
       </router-link>
     </v-flex>

@@ -9,7 +9,7 @@
         </router-link>
       </div>
       <v-spacer></v-spacer>
-      <router-link :to="'/question/create'">
+      <router-link :to="'/question/create'" class="mr-0">
         <v-btn
             class="white--text"
             color="primary">
