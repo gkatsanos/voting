@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-xl>
+  <div>
     <h4>Questions</h4>
     <v-layout row wrap>
       <question
@@ -9,7 +9,7 @@
         :question="question">
       </question>
     </v-layout>
-  </v-container>
+  </div>
 </template>
 
 <script>

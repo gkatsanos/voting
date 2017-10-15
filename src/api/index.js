@@ -26,4 +26,12 @@ const vote = url => (
     })
 );
 
-export default { fetchItems, vote, getUrl };
+const saveQuestion = (url, data) => (
+  axios.post(url, data)
+    .then(response => response.data)
+    .catch((err) => {
+      throw err;
+    })
+);
+
+export default { fetchItems, vote, getUrl, saveQuestion };

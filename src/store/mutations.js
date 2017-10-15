@@ -24,7 +24,7 @@ export default {
     state.btnLoadingState = false;
     state.questions[myIndex].voted = true;
   },
-  [types.INCREASE_PAGE](state) {
-    state.page += 1;
+  [types.QUESTION_SAVED](state) {
+    state.btnLoadingState = false;
   },
 };

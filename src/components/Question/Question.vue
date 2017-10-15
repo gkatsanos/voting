@@ -1,24 +1,22 @@
+<style src="./question.scss" lang="scss"></style>
+
 <template>
   <v-flex d-flex sm12 md6 lg4 xl3>
-    <v-card color="blue-grey lighten-4">
+    <router-link :to="`${id}`" class="card-link">
+    <v-card color="blue-grey darken-1" hover class="white--text">
       <v-card-title primary-title>
         <div>
           <div class="headline">{{ question.question }}</div>
           <div>
-            {{ question.published_at }}
+            created {{ question.published_at | moment("from", "now") }}
           </div>
           <div>
-            {{ question.choices.length }}
+            {{ question.choices.length }} choices
           </div>
         </div>
       </v-card-title>
-      <v-card-actions>
-
-          <router-link :to="`${id}`" tag="v-btn">
-            See More
-          </router-link>
-      </v-card-actions>
     </v-card>
+    </router-link>
   </v-flex>
 </template>
 
