@@ -1,7 +1,11 @@
 <template>
-  <v-container grid-list-xl>
+  <v-container
+      fluid
+      grid-list-md
+      :grid-list-xl="$vuetify.breakpoint.smAndUp"
+  >
     <v-layout column>
-      <v-flex xs12 lg10 offset-xs1>
+      <v-flex xs12 md10 offset-md1 lg9>
         <h4>Question: {{ question.question }}</h4>
         <v-card color="blue-grey darken-2" class="white--text">
           <v-card-text>
@@ -36,9 +40,10 @@
           </v-card-text>
         </v-card>
       </v-flex>
-      <v-flex xs12 lg10 offset-xs1 text-xs-right>
+      <v-flex xs12 md10 offset-md1 lg9 text-xs-right>
         <v-spacer></v-spacer>
         <v-btn
+            :block="$vuetify.breakpoint.xsOnly"
             :disabled="!canVote"
             class="ma-0"
             color="primary"
@@ -69,7 +74,7 @@
       'id',
     ],
     created() {
-      if (!this.$store.state.questions.length) {
+      if (!this.$store.state.hasLoaded) {
         this.$store.dispatch('requestItems');
       }
     },
