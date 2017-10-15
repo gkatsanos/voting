@@ -26,5 +26,10 @@ export default {
   },
   [types.QUESTION_SAVED](state) {
     state.btnLoadingState = false;
+    state.questionSaved = true;
+    state.hasLoaded = false;
+  },
+  [types.RESET_QUESTION_FLAG](state) {
+    state.questionSaved = false;
   },
 };

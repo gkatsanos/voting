@@ -3,9 +3,10 @@
     <v-flex xs12 md10 offset-md1 lg9>
       <v-card color="blue-grey darken-2" dark>
         <v-toolbar dark>
-          <v-toolbar-title>Add new Question</v-toolbar-title>
+          <v-toolbar-title v-if="!questionSaved">Add new Question</v-toolbar-title>
+          <v-toolbar-title v-else>Your Question was submitted succesfully</v-toolbar-title>
         </v-toolbar>
-        <v-card-text>
+        <v-card-text v-if="!questionSaved">
             <v-form v-model="valid" ref="form">
               <v-text-field
                   name="title"
@@ -32,7 +33,7 @@
               </template>
             </v-form>
           <v-btn
-              class="ma-0"
+              class="ml-0"
               @click="addChoice"
               small
           >
@@ -47,6 +48,32 @@
             Clear choices
           </v-btn>
         </v-card-text>
+        <v-list dark v-else dense>
+          <v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title>
+                Question Title
+              </v-list-tile-title>
+              <v-list-tile-sub-title>
+                {{ question.question }}
+              </v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title>
+                Choices
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile v-for="(choice, index) in question.choices" :key="index">
+            <v-list-tile-content>
+              <v-list-tile-sub-title>
+                {{ choice }}
+              </v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
       </v-card>
     </v-flex>
     <v-flex xs12 md10 offset-md1 lg9 text-xs-right>
@@ -57,15 +84,27 @@
           class="ma-0"
           color="primary"
           :loading="btnLoadingState"
+          v-if="!questionSaved"
           @click="saveQuestion(question)">
           Save Question
       </v-btn>
+      <router-link :to="'/'">
+        <v-btn
+            :block="$vuetify.breakpoint.xsOnly"
+            class="ma-0"
+            color="primary"
+            v-if="questionSaved">
+            <v-icon left>arrow_back</v-icon>
+            Back to Questions List
+        </v-btn>
+      </router-link>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
   import { mapState } from 'vuex';
+  import * as types from '../../store/mutation-types';
 
   export default {
     data() {
@@ -83,13 +122,11 @@
     },
     name: 'addquestion',
     created() {
-      if (!this.$store.state.hasLoaded) {
-        this.$store.dispatch('requestItems');
-      }
+      this.$store.commit(types.RESET_QUESTION_FLAG);
     },
     computed: {
       ...mapState([
-        'createdQuestion',
+        'questionSaved',
         'btnLoadingState',
       ]),
     },

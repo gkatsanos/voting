@@ -13,6 +13,7 @@ export default new Vuex.Store({
     stateLoaded: false,
     loadingState: false,
     btnLoadingState: false,
+    questionSaved: false,
     voted: false,
     apiEntryPoint: '',
   },

@@ -41,10 +41,19 @@
     </v-flex>
     <v-flex xs12 md10 offset-md1 lg9 text-xs-right>
       <v-spacer></v-spacer>
+      <router-link :to="'/'">
+        <v-btn
+            :block="$vuetify.breakpoint.xsOnly"
+            color="primary"
+            v-if="this.question.voted">
+          <v-icon left>arrow_back</v-icon>
+          Back to Questions List
+        </v-btn>
+      </router-link>
       <v-btn
           :block="$vuetify.breakpoint.xsOnly"
           :disabled="!canVote"
-          class="ma-0"
+          class="mr-0"
           color="primary"
           :loading="btnLoadingState"
           @click="vote(voteChoice)">

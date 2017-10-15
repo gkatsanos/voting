@@ -7,3 +7,4 @@ export const SET_URL = 'SET_URL';
 export const PRE_VOTE = 'PRE_VOTE';
 export const VOTE = 'VOTE';
 export const QUESTION_SAVED = 'QUESTION_SAVED';
+export const RESET_QUESTION_FLAG = 'RESET_QUESTION_FLAG';
