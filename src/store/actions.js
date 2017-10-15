@@ -13,12 +13,17 @@ export const getUrl = ({ commit, dispatch }) => {
   });
 };
 
-export const fetchItems = ({ dispatch, state }) => {
-  api.fetchItems(state.apiEntryPoint).then((data) => {
+export const fetchItems = ({ commit, dispatch, state }) => {
+  commit(types.PRE_HTTP_REQUEST);
+  api.fetchItems(state.apiEntryPoint, state.nextPage).then((data) => {
     dispatch('receiveItems', data);
-  }).catch((err) => {
-    throw new Error(err);
+  }).catch(() => {
+    commit(types.FETCHED_ADS_FAIL);
   });
+};
+
+export const receiveItems = ({ commit }, data) => {
+  commit(types.FETCHED_ADS_SUCCESS, data);
 };
 
 export const vote = ({ commit }, data) => {
@@ -37,9 +42,5 @@ export const saveQuestion = ({ commit, state }, data) => {
   }).catch((err) => {
     throw new Error(err);
   });
-};
-
-export const receiveItems = ({ commit }, data) => {
-  commit(types.FETCHED_ADS_SUCCESS, data);
 };
 

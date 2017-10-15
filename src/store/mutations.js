@@ -12,8 +12,15 @@ export default {
   },
   [types.FETCHED_ADS_SUCCESS](state, payload) {
     state.loadingState = false;
-    state.questions = [...payload];
+    state.questions = state.questions.concat(...payload);
     state.hasLoaded = true;
+    state.nextPage += 1;
+  },
+  [types.FETCHED_ADS_FAIL](state) {
+    state.loadingState = false;
+    state.hasLoaded = true;
+    state.nextPage = 1;
+    state.maxPagesReached = true;
   },
   [types.VOTE](state, payload) {
     const myIndex = state.questions

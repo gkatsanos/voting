@@ -10,8 +10,8 @@ const getUrl = () => (
     })
 );
 
-const fetchItems = url => (
-  axios(url)
+const fetchItems = (url, page = 1) => (
+  axios(url, { params: { page } })
     .then(response => response.data)
     .catch((err) => {
       throw err;

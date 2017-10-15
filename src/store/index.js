@@ -16,6 +16,8 @@ export default new Vuex.Store({
     questionSaved: false,
     voted: false,
     apiEntryPoint: '',
+    nextPage: 1,
+    maxPagesReached: false,
   },
   actions,
   mutations,

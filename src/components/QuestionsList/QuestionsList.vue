@@ -9,11 +9,20 @@
         :question="question">
       </question>
     </v-layout>
+    <v-layout column align-center>
+      <v-btn
+          large
+          color="primary"
+          :block="$vuetify.breakpoint.xsOnly"
+          v-if="!maxPagesReached"
+          @click="$store.dispatch('requestItems')">
+        Load More Questions</v-btn>
+    </v-layout>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapState } from 'vuex';
   import Question from '../Question/Question';
 
   export default {
@@ -24,6 +33,9 @@
     computed: {
       ...mapGetters([
         'questions',
+      ]),
+      ...mapState([
+        'maxPagesReached',
       ]),
     },
     mounted() {

@@ -8,3 +8,5 @@ export const PRE_VOTE = 'PRE_VOTE';
 export const VOTE = 'VOTE';
 export const QUESTION_SAVED = 'QUESTION_SAVED';
 export const RESET_QUESTION_FLAG = 'RESET_QUESTION_FLAG';
+export const LOAD_MORE_QUESTIONS = 'LOAD_MORE_QUESTIONS';
+export const FETCHED_ADS_FAIL = 'FETCHED_ADS_FAIL';

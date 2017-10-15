@@ -49,8 +49,7 @@
       <router-link :to="'/'">
         <v-btn
             :block="$vuetify.breakpoint.xsOnly"
-            color="primary"
-            v-if="this.question.voted">
+            color="primary">
           <v-icon left>arrow_back</v-icon>
           Back to Questions
         </v-btn>
