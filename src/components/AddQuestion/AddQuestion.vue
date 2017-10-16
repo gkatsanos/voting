@@ -94,11 +94,10 @@
           @click="saveQuestion(question)">
           Save Question
       </v-btn>
-      <router-link :to="'/'">
+      <router-link :to="'/'" class="card-link">
         <v-btn
             :block="$vuetify.breakpoint.xsOnly"
             class="ma-0"
-            color="primary"
             v-if="questionSaved">
             <v-icon left>arrow_back</v-icon>
             Back to Questions

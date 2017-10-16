@@ -46,10 +46,9 @@
     </v-flex>
     <v-flex xs12 md10 offset-md1 lg9 text-xs-right>
       <v-spacer></v-spacer>
-      <router-link :to="'/'">
+      <router-link :to="'/'" class="card-link">
         <v-btn
-            :block="$vuetify.breakpoint.xsOnly"
-            color="primary">
+            :block="$vuetify.breakpoint.xsOnly">
           <v-icon left>arrow_back</v-icon>
           Back to Questions
         </v-btn>
