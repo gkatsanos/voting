@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import QuestionsList from '../components/QuestionsList/QuestionsList';
-import QuestionDetail from '../components/QuestionDetail/QuestionDetail';
-import AddQuestion from '../components/AddQuestion/AddQuestion';
+
+const QuestionsList = () => import('../components/QuestionsList/QuestionsList');
+const QuestionDetail = () => import('../components/QuestionDetail/QuestionDetail');
+const AddQuestion = () => import('../components/AddQuestion/AddQuestion');
 
 Vue.use(Router);
 
