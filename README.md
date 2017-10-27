@@ -49,5 +49,3 @@ As the API doesn't provide authorization and authentication ways in order to lim
 - Bundling was not optimized for code splitting, tree shaking or otherwise. CSS files are inlined by webpack which for caching purposes might not be ideal. (but this is not a production ready product)
 
 - CSS could be generally trimmed down. 
-
-- No tests were included.
