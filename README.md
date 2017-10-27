@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gkatsanos/voting.svg?branch=master)](https://travis-ci.org/gkatsanos/voting)
+[![Coverage Status](https://coveralls.io/repos/github/gkatsanos/voting/badge.svg?branch=master)](https://coveralls.io/github/gkatsanos/voting?branch=master)
 # Voting SPA
 
 ## Live demo

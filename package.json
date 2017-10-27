@@ -1,14 +1,16 @@
 {
-  "name": "bcgdv-voting",
+  "name": "voting",
   "version": "1.0.0",
   "description": "a single page application that lets users vote through the Polls API",
   "author": "Georgios Katsanos <gkatsanos@gmail.com>",
+  "license": "BSD-3-Clause",
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
-    "test": "jest --coverage --watch"
+    "test": "jest --coverage",
+    "test-watch": "jest --coverage --watch"
   },
   "dependencies": {
     "axios": "^0.16.2",
