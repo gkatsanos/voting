@@ -24,7 +24,7 @@ describe('QuestionsList.spec.js', () => {
     expect(template).toMatchSnapshot()
   });
   
-  it('should emit an event on created', () => {
+  it('should emit 2 dispatch events', () => {
     expect(store.dispatch.mock.calls.length).toBe(2);
   });
   
