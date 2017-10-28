@@ -11,6 +11,7 @@
     </v-layout>
     <v-layout column align-center>
       <v-btn
+          data-qa="load-more-questions"
           large
           color="primary"
           :block="$vuetify.breakpoint.xsOnly"

@@ -1,8 +1,11 @@
-store.dispatch = jest.fn();
 import Vue from 'vue';
-import { mount } from 'vue-test-utils';
+import Vuex from 'vuex';
+import { shallow, createLocalVue } from 'vue-test-utils';
 import QuestionsList from './QuestionsList';
-import store from '@/store';
+
+const localVue = createLocalVue();
+
+localVue.use(Vuex);
 
 Vue.prototype.$vuetify = {
   load: (fn) => fn(),
@@ -12,20 +15,75 @@ Vue.prototype.$vuetify = {
 describe('QuestionsList.spec.js', () => {
   let cmp;
   let template;
+  let actions;
+  let getters;
+  let state;
+  let store;
   
+  beforeAll(() => {
+    actions = {
+      requestItems: jest.fn()
+    };
+    getters = {
+      questions: () => []
+    };
+    state = {
+      hasLoaded: false,
+      maxPagesReached: false
+    };
+  });
+
   beforeEach(() => {
-    cmp = mount(QuestionsList, {
-      store,
+    store = new Vuex.Store({
+      state,
+      actions,
+      getters
     });
-    template = cmp.html();
+    cmp = shallow(QuestionsList, {
+      store,
+      localVue
+    });
   });
   
   it('has the expected html structure', () => {
+    template = cmp.html();
     expect(template).toMatchSnapshot()
   });
   
-  it('should emit 2 dispatch events', () => {
-    expect(store.dispatch.mock.calls.length).toBe(2);
+  it('calls store action requestItems when button is clicked', () => {
+    const button = cmp.find('v-btn');
+    button.trigger('click');
+    expect(actions.requestItems).toHaveBeenCalled();
+  });
+
+  it('calls store action requestItems when store is not populated', () => {
+    store = new Vuex.Store({
+      state: {
+        hasLoaded: true
+      },
+      actions,
+      getters
+    });
+    cmp = shallow(QuestionsList, {
+      store,
+      localVue
+    });
+    expect(actions.requestItems).toHaveBeenCalled();
+  });
+
+  it('hides button if max pages have been reached', () => {
+    store = new Vuex.Store({
+      state: {
+        maxPagesReached: true
+      },
+      actions,
+      getters
+    });
+    cmp = shallow(QuestionsList, {
+      store,
+      localVue
+    });
+    expect(cmp.contains("[data-qa='load-more-questions']")).toBe(false);
   });
   
 });

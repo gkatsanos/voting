@@ -1,8 +1,6 @@
-store.dispatch = jest.fn();
 import Vue from 'vue';
 import { mount } from 'vue-test-utils';
 import Question from './Question';
-import store from '@/store';
 
 Vue.prototype.$vuetify = {
   load: (fn) => fn(),
@@ -44,8 +42,7 @@ describe('Question.spec.js', () => {
           "question": "Favourite programming language?"
         },
         id: "/questions/6673",
-      },
-      store,
+      }
     });
     template = cmp.html();
   });
@@ -54,4 +51,8 @@ describe('Question.spec.js', () => {
     expect(template).toMatchSnapshot()
   });
   
+  it('has a link with its UID', () => {
+    expect(cmp.vm.$el.querySelector('.card-link').getAttribute('to')).toBe('/questions/6673');
+  });
+
 });

@@ -5,7 +5,7 @@ exports[`QuestionsList.spec.js has the expected html structure 1`] = `
     <h4>Questions</h4>
     <v-layout row="" wrap=""></v-layout>
     <v-layout column="" align-center="">
-        <v-btn large="" color="primary">
+        <v-btn data-qa="load-more-questions" large="" color="primary">
             Load More Questions</v-btn>
     </v-layout>
 </div>
