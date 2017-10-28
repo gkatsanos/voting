@@ -21,18 +21,7 @@
   "env": {
     "test": {
       "presets": [
-        "env",
-        "stage-2"
-      ],
-      "plugins": [
-        ["istanbul", {
-          "exclude": [
-            "**/*.spec.js"
-          ]
-        }],
-        "syntax-dynamic-import",
-        "transform-es2015-modules-commonjs",
-        "dynamic-import-node"
+        ["env", { "targets": { "node": 8 }}]
       ]
     }
   }

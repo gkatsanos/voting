@@ -1,6 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuestionsList.spec.js has the expected html structure 1`] = `
-"<div><h4>Questions</h4> <v-layout row=\\"\\" wrap=\\"\\"></v-layout> <v-layout column=\\"\\" align-center=\\"\\"><v-btn large=\\"\\" color=\\"primary\\">
-      Load More Questions</v-btn></v-layout></div>"
+<div>
+    <h4>Questions</h4>
+    <v-layout row="" wrap=""></v-layout>
+    <v-layout column="" align-center="">
+        <v-btn large="" color="primary">
+            Load More Questions</v-btn>
+    </v-layout>
+</div>
 `;
