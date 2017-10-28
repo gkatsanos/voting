@@ -8,8 +8,8 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 Vue.prototype.$vuetify = {
-  load: (fn) => fn(),
-  breakpoint: {}
+  load: fn => fn(),
+  breakpoint: {},
 };
 
 describe('QuestionsList.spec.js', () => {
@@ -19,17 +19,17 @@ describe('QuestionsList.spec.js', () => {
   let getters;
   let state;
   let store;
-  
+
   beforeAll(() => {
     actions = {
-      requestItems: jest.fn()
+      requestItems: jest.fn(),
     };
     getters = {
-      questions: () => []
+      questions: () => [],
     };
     state = {
       hasLoaded: false,
-      maxPagesReached: false
+      maxPagesReached: false,
     };
   });
 
@@ -37,19 +37,19 @@ describe('QuestionsList.spec.js', () => {
     store = new Vuex.Store({
       state,
       actions,
-      getters
+      getters,
     });
     cmp = shallow(QuestionsList, {
       store,
-      localVue
+      localVue,
     });
   });
-  
+
   it('has the expected html structure', () => {
     template = cmp.html();
-    expect(template).toMatchSnapshot()
+    expect(template).toMatchSnapshot();
   });
-  
+
   it('calls store action requestItems when button is clicked', () => {
     const button = cmp.find('v-btn');
     button.trigger('click');
@@ -59,14 +59,14 @@ describe('QuestionsList.spec.js', () => {
   it('calls store action requestItems when store is not populated', () => {
     store = new Vuex.Store({
       state: {
-        hasLoaded: true
+        hasLoaded: true,
       },
       actions,
-      getters
+      getters,
     });
     cmp = shallow(QuestionsList, {
       store,
-      localVue
+      localVue,
     });
     expect(actions.requestItems).toHaveBeenCalled();
   });
@@ -74,16 +74,15 @@ describe('QuestionsList.spec.js', () => {
   it('hides button if max pages have been reached', () => {
     store = new Vuex.Store({
       state: {
-        maxPagesReached: true
+        maxPagesReached: true,
       },
       actions,
-      getters
+      getters,
     });
     cmp = shallow(QuestionsList, {
       store,
-      localVue
+      localVue,
     });
     expect(cmp.contains("[data-qa='load-more-questions']")).toBe(false);
   });
-  
 });
