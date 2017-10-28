@@ -34,4 +34,6 @@ const saveQuestion = (url, data) => (
     })
 );
 
-export default { fetchItems, vote, getUrl, saveQuestion };
+export default {
+  fetchItems, vote, getUrl, saveQuestion,
+};
