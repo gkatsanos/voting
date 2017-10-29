@@ -1,4 +1,4 @@
-import api from '../api';
+import api from '../api/api';
 import * as types from './mutation-types';
 
 export const requestItems = ({ commit, dispatch }) => {
@@ -27,7 +27,7 @@ export const receiveItems = ({ commit }, data) => {
 };
 
 export const vote = ({ commit }, data) => {
-  commit(types.PRE_VOTE);
+  commit(types.BTN_LOADING);
   api.vote(data.choice).then((response) => {
     commit(types.VOTE, { response, data });
   }).catch((err) => {
@@ -36,7 +36,7 @@ export const vote = ({ commit }, data) => {
 };
 
 export const saveQuestion = ({ commit, state }, data) => {
-  commit(types.PRE_VOTE);
+  commit(types.BTN_LOADING);
   api.saveQuestion(state.apiEntryPoint, data).then((response) => {
     commit(types.QUESTION_SAVED, response);
   }).catch((err) => {

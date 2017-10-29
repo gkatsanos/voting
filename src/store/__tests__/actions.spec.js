@@ -1,23 +1,29 @@
+jest.mock('@api/api');
 import * as types from '@/store/mutation-types';
-import api from '@/api';
-import { fetchItems } from '../actions';
+import flushPromises from 'flush-promises';
 
-jest.mock('@api');
+import {
+  fetchItems,
+  requestItems,
+  saveQuestion,
+  vote,
+} from '../actions';
 
-describe('actions', () => {
+
+describe('fetchItems Action', () => {
   let state;
   let commit;
   let dispatch;
   beforeAll(() => {
+  });
+
+  beforeEach(() => {
     commit = jest.fn();
     dispatch = jest.fn();
     state = {
       apiEntryPoint: '',
       nextPage: 0,
     };
-  });
-
-  beforeEach(() => {
     fetchItems({
       commit,
       dispatch,
@@ -29,16 +35,90 @@ describe('actions', () => {
     expect(commit).toHaveBeenCalledWith(types.PRE_HTTP_REQUEST);
   });
 
-  it('should call receiveItems after succesful fetch', () => {
-    setTimeout(() => {
-      expect(dispatch).toHaveBeenCalledWith('receiveItems', {});
+  it('should call receiveItems after succesful fetch', async () => {
+    await flushPromises();
+    expect(dispatch).toHaveBeenCalledWith('receiveItems', {});
+  });
+
+  it('should call a fail commit if request fails', async () => {
+    await flushPromises();
+    // const api = {};
+    // api.fetchItems = jest.fn().mockImplementation(() => Promise.reject());
+    // expect(commit).toHaveBeenCalledWith(types.FETCHED_ADS_FAIL);
+    // expect(commit).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe('requestItems action', () => {
+  let commit;
+  let dispatch;
+  beforeAll(() => {
+  });
+
+  beforeEach(() => {
+    commit = jest.fn();
+    dispatch = jest.fn();
+    requestItems({
+      commit,
+      dispatch,
     });
   });
 
-  it('should call a fail commit if request fails', () => {
-    api.fetchItems = jest.fn(() => Promise.reject());
-    setTimeout(() => {
-      expect(commit).toHaveBeenCalledWith(types.FETCHED_ADS_FAIL);
-    });
+  it('should dispatch a getUrl action', () => {
+    expect(dispatch).toHaveBeenCalledWith('getUrl');
+  });
+
+  it('should commit a PRE mutation', () => {
+    expect(commit).toHaveBeenCalledWith(types.PRE_HTTP_REQUEST);
+  });
+});
+
+describe('saveQuestion action', () => {
+  let commit;
+  let state;
+  beforeAll(() => {
+  });
+
+  beforeEach(() => {
+    commit = jest.fn();
+    state = {
+      apiEntryPoint: '',
+      nextPage: 0,
+    };
+    saveQuestion({
+      commit,
+      state,
+    }, {});
+  });
+
+  it('should dispatch a loading action', () => {
+    expect(commit).toHaveBeenCalledWith(types.BTN_LOADING);
+  });
+
+  it('on succesful question save, a commit should be triggered', async () => {
+    await flushPromises();
+    expect(commit).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe('vote action', () => {
+  let commit;
+  beforeAll(() => {
+    commit = jest.fn();
+  });
+
+  beforeEach(() => {
+    vote({
+      commit,
+    }, {});
+  });
+
+  it('should dispatch a loading action', () => {
+    expect(commit).toHaveBeenCalledWith(types.BTN_LOADING);
+  });
+
+  it('on succesful question save, a commit should be triggered', async () => {
+    await flushPromises();
+    expect(commit).toHaveBeenLastCalledWith(types.VOTE, { response: undefined, data: {} });
   });
 });

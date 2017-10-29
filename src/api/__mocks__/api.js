@@ -1,6 +1,6 @@
 const getUrl = jest.fn(() => Promise.resolve());
 
-const fetchItems = jest.fn(() => Promise.resolve());
+const fetchItems = jest.fn(() => Promise.resolve({}));
 
 const vote = jest.fn(() => Promise.resolve());
 

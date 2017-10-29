@@ -7,7 +7,7 @@ export default {
   [types.PRE_HTTP_REQUEST](state) {
     state.loadingState = true;
   },
-  [types.PRE_VOTE](state) {
+  [types.BTN_LOADING](state) {
     state.btnLoadingState = true;
   },
   [types.FETCHED_ADS_SUCCESS](state, payload) {
