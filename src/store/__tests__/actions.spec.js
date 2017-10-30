@@ -21,7 +21,7 @@ describe('fetchItems Action', () => {
     commit = jest.fn();
     dispatch = jest.fn();
     state = {
-      apiEntryPoint: '',
+      apiEntryPoint: 'a',
       nextPage: 0,
     };
     fetchItems({
@@ -37,14 +37,21 @@ describe('fetchItems Action', () => {
 
   it('should call receiveItems after succesful fetch', async () => {
     await flushPromises();
-    expect(dispatch).toHaveBeenCalledWith('receiveItems', {});
+    expect(dispatch).toHaveBeenCalledWith('receiveItems', undefined);
   });
 
   it('should call a fail commit if request fails', async () => {
     await flushPromises();
-    // const api = {};
-    // api.fetchItems = jest.fn().mockImplementation(() => Promise.reject());
-    // expect(commit).toHaveBeenCalledWith(types.FETCHED_ADS_FAIL);
+    state = {
+      apiEntryPoint: '',
+      nextPage: 0,
+    };
+    fetchItems({
+      commit,
+      dispatch,
+      state,
+    });
+    expect(commit).toHaveBeenLastCalledWith(types.FETCHED_ADS_FAIL);
     // expect(commit).toHaveBeenCalledTimes(2);
   });
 });
@@ -98,6 +105,7 @@ describe('saveQuestion action', () => {
   it('on succesful question save, a commit should be triggered', async () => {
     await flushPromises();
     expect(commit).toHaveBeenCalledTimes(2);
+    expect(commit).toHaveBeenLastCalledWith(types.QUESTION_SAVED, undefined);
   });
 });
 
