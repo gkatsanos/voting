@@ -1,7 +1,5 @@
-jest.mock('@api/api');
 import * as types from '@/store/mutation-types';
 import flushPromises from 'flush-promises';
-
 import {
   fetchItems,
   requestItems,
@@ -9,6 +7,7 @@ import {
   vote,
 } from '../actions';
 
+jest.mock('@api/api');
 
 describe('fetchItems Action', () => {
   let state;
@@ -20,6 +19,36 @@ describe('fetchItems Action', () => {
   beforeEach(() => {
     commit = jest.fn();
     dispatch = jest.fn();
+  });
+
+  it('should call a commit before fetching', () => {
+    state = {
+      apiEntryPoint: 'a',
+      nextPage: 0,
+    };
+    fetchItems({
+      commit,
+      dispatch,
+      state,
+    });
+    expect(commit).toHaveBeenCalledWith(types.PRE_HTTP_REQUEST);
+  });
+
+  it('should call receiveItems after succesful fetch', async () => {
+    state = {
+      apiEntryPoint: 'a',
+      nextPage: 0,
+    };
+    fetchItems({
+      commit,
+      dispatch,
+      state,
+    });
+    await flushPromises();
+    expect(dispatch).toHaveBeenCalledWith('receiveItems', undefined);
+  });
+
+  it('should call a fail commit if request fails', async () => {
     state = {
       apiEntryPoint: '',
       nextPage: 0,
@@ -29,23 +58,9 @@ describe('fetchItems Action', () => {
       dispatch,
       state,
     });
-  });
-
-  it('should call a commit before fetching', () => {
-    expect(commit).toHaveBeenCalledWith(types.PRE_HTTP_REQUEST);
-  });
-
-  it('should call receiveItems after succesful fetch', async () => {
     await flushPromises();
-    expect(dispatch).toHaveBeenCalledWith('receiveItems', {});
-  });
-
-  it('should call a fail commit if request fails', async () => {
-    await flushPromises();
-    // const api = {};
-    // api.fetchItems = jest.fn().mockImplementation(() => Promise.reject());
-    // expect(commit).toHaveBeenCalledWith(types.FETCHED_ADS_FAIL);
-    // expect(commit).toHaveBeenCalledTimes(2);
+    expect(commit).toHaveBeenLastCalledWith(types.FETCHED_ADS_FAIL);
+    expect(commit).toHaveBeenCalledTimes(2);
   });
 });
 
@@ -98,6 +113,7 @@ describe('saveQuestion action', () => {
   it('on succesful question save, a commit should be triggered', async () => {
     await flushPromises();
     expect(commit).toHaveBeenCalledTimes(2);
+    expect(commit).toHaveBeenLastCalledWith(types.QUESTION_SAVED, undefined);
   });
 });
 

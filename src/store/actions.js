@@ -15,11 +15,9 @@ export const getUrl = ({ commit, dispatch }) => {
 
 export const fetchItems = ({ commit, dispatch, state }) => {
   commit(types.PRE_HTTP_REQUEST);
-  api.fetchItems(state.apiEntryPoint, state.nextPage).then((data) => {
-    dispatch('receiveItems', data);
-  }).catch(() => {
-    commit(types.FETCHED_ADS_FAIL);
-  });
+  api.fetchItems(state.apiEntryPoint, state.nextPage)
+    .then(data => dispatch('receiveItems', data))
+    .catch(() => commit(types.FETCHED_ADS_FAIL));
 };
 
 export const receiveItems = ({ commit }, data) => {
@@ -43,4 +41,3 @@ export const saveQuestion = ({ commit, state }, data) => {
     throw new Error(err);
   });
 };
-
