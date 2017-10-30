@@ -37,6 +37,7 @@ npm run test:coverage
 - No Lodash 
 - AirBnB ESLint ruleset
 - Moment (vue-moment) for date formatting
+- Jest
 
 ## Features
 

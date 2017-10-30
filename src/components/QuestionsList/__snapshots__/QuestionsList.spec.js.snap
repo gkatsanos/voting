@@ -3,10 +3,8 @@
 exports[`QuestionsList.spec.js has the expected html structure 1`] = `
 <div>
     <h4>Questions</h4>
-    <v-layout row="" wrap=""></v-layout>
-    <v-layout column="" align-center="">
-        <v-btn data-qa="load-more-questions" large="" color="primary">
-            Load More Questions</v-btn>
-    </v-layout>
+    <div class="layout row wrap"></div>
+    <div class="layout column align-center"><button type="button" class="btn btn--large btn--raised primary" data-ripple="true" data-qa="load-more-questions"><div class="btn__content">
+      Load More Questions</div></button></div>
 </div>
 `;

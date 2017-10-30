@@ -1,16 +1,12 @@
-import Vue from 'vue';
 import Vuex from 'vuex';
-import { shallow, createLocalVue } from 'vue-test-utils';
+import Vuetify from 'vuetify';
+import { shallow, mount, createLocalVue } from 'vue-test-utils';
 import QuestionsList from './QuestionsList';
 
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
-
-Vue.prototype.$vuetify = {
-  load: fn => fn(),
-  breakpoint: {},
-};
+localVue.use(Vuetify);
 
 describe('QuestionsList.spec.js', () => {
   let cmp;
@@ -39,7 +35,7 @@ describe('QuestionsList.spec.js', () => {
       actions,
       getters,
     });
-    cmp = shallow(QuestionsList, {
+    cmp = mount(QuestionsList, {
       store,
       localVue,
     });
@@ -51,7 +47,7 @@ describe('QuestionsList.spec.js', () => {
   });
 
   it('calls store action requestItems when button is clicked', () => {
-    const button = cmp.find('v-btn');
+    const button = cmp.find('[data-qa=\'load-more-questions\']');
     button.trigger('click');
     expect(actions.requestItems).toHaveBeenCalled();
   });
