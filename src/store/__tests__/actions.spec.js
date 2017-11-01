@@ -1,4 +1,6 @@
 import * as types from '@/store/mutation-types';
+// @TODO get rid of that and just
+// 1/ return the promises from the actions, 2/ await them
 import flushPromises from 'flush-promises';
 import {
   fetchItems,
